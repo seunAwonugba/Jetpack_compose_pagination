@@ -6,4 +6,5 @@ object Constant {
     const val SEARCH_PHOTOS_ENDPOINT = "search/photos"
     const val UNSPLASH_DB_TABLE = "unsplash_db_table"
     const val DB_PAGINATION_REMOTE_KEYS_TABLE = "db_pagination_remote_keys_table"
+    const val ALL_PHOTOS_DATABASE = "all_photos_database"
 }
