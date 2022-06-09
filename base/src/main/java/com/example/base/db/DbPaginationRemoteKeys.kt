@@ -20,6 +20,11 @@ import com.example.base.Constant.DB_PAGINATION_REMOTE_KEYS_TABLE
 //the remote mediator will also help us catch data in our DB when u fetch new data from server
 
 //so this DbPaginationRemoteKeys class will be used by remote mediator to know which page to request next
+
+//remote mediator: simply request data from api and cache the data in db
+//with remote mediator, i dont want to show data directly from api, instead i want to show the data
+//from db, so db will act as a single source of truth, so when there is no internet connection, i can simply
+//show my data without issues
 @Entity(tableName = DB_PAGINATION_REMOTE_KEYS_TABLE)
 data class DbPaginationRemoteKeys(
     @PrimaryKey(autoGenerate = false)

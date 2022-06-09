@@ -12,7 +12,7 @@ interface AllPhotosDataDao {
 
     //first add data to DB
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(allPhotosData: AllPhotosData)
+    suspend fun upsert(allPhotosData: List<AllPhotosData>)
 
     //by using paging source, it alo means we'll be able to paginate via our db also with our paging
     //library
