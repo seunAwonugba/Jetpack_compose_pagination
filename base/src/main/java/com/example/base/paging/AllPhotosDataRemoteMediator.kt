@@ -86,14 +86,16 @@ class AllPhotosDataRemoteMediator @Inject constructor(
                 if (keys != null) {
                     dbPaginationRemoteKeysDao.upsertDbRemoteKeys(remoteKeysDao = keys)
                 }
-                response.body()?.map {
-                    AllPhotosData(
-                        id = it.id,
-                        images = it.urls.regular,
-                        likes = it.likes,
-                        user = "${it.user.first_name} ${it.user.last_name}"
-                    )
-                }?.let { allPhotosDataDao.upsert(allPhotosData = it) }
+                if (response.isSuccessful && response.body() != null){
+                    response.body()?.map {
+                        AllPhotosData(
+                            id = it.id,
+                            images = it.urls.regular,
+                            likes = it.likes,
+                            user = "${it.user.first_name} ${it.user.last_name}"
+                        )
+                    }?.let { allPhotosDataDao.upsert(allPhotosData = it) }
+                }
             }
             MediatorResult.Success(endOfPaginationReached == true)
         }catch (err : Exception){

@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcomposepagination.navigation.MainAppNavGraph
 import com.example.jetpackcomposepagination.ui.theme.JetpackComposePaginationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +26,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
+                    val navController = rememberNavController()
+                    MainAppNavGraph(navController = navController)
                 }
             }
         }
