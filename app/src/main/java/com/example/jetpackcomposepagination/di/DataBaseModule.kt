@@ -19,7 +19,7 @@ object DataBaseModule {
     @Provides
     fun provideAllPhotosDataBase(@ApplicationContext context: Context) : AllPhotosDataBase {
         return Room.databaseBuilder(
-            context = context,
+            context ,
             AllPhotosDataBase::class.java,
             ALL_PHOTOS_DATABASE
         ).build()

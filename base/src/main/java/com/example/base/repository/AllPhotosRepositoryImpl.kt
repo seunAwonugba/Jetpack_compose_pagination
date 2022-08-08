@@ -17,11 +17,8 @@ class AllPhotosRepositoryImpl @Inject constructor(
     private val allPhotosDataBase: AllPhotosDataBase
 ) : AllPhotosRepository {
     @OptIn(ExperimentalPagingApi::class)
-    override suspend fun getAllPhotos(
-        page: Int,
-        per_page: Int,
-        order_by: String
-    ): Flow<PagingData<AllPhotosData>> {
+
+    override fun getAllPhotos(): Flow<PagingData<AllPhotosData>> {
         val pagingSourceFactory = {allPhotosDataBase.allPhotosDataDao().fetchDataFromDb()}
 
         return Pager(
@@ -29,6 +26,7 @@ class AllPhotosRepositoryImpl @Inject constructor(
                 pageSize = ITEMS_PER_PAGE,
                 enablePlaceholders = true
             ),
+            //we use remote mediator to fetch data from api, and store the response into db
             remoteMediator = AllPhotosDataRemoteMediator(
                 allPhotosWebService = allPhotosWebService,
                 allPhotosDataBase = allPhotosDataBase

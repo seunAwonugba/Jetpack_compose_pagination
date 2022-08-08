@@ -92,7 +92,8 @@ class AllPhotosDataRemoteMediator @Inject constructor(
                             id = it.id,
                             images = it.urls.regular,
                             likes = it.likes,
-                            user = "${it.user.first_name} ${it.user.last_name}"
+                            user = "${it.user.first_name} ${it.user.last_name}",
+                            userName = it.user.username
                         )
                     }?.let { allPhotosDataDao.upsert(allPhotosData = it) }
                 }
