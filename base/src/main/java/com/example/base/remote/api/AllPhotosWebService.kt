@@ -2,7 +2,7 @@ package com.example.base.remote.api
 
 import com.example.base.BuildConfig
 import com.example.base.Constant.GET_ALL_PHOTOS_END_POINT
-import com.example.base.remote.data.UnsplashResponseDto
+import com.example.base.remote.data.allphotos.UnsplashResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers

@@ -2,9 +2,7 @@ package com.example.list.component
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -57,6 +55,8 @@ fun AllPhotosListItem(
     )
 
     val sizeImage by remember { mutableStateOf(IntSize.Zero) }
+    val scroll = rememberScrollState(0)
+
 
 
     Card(
@@ -112,9 +112,11 @@ fun AllPhotosListItem(
                         Text(
                             text = allPhotosData.userName,
                             color = Color(0xFFc7cdd8),
-                            modifier = Modifier.clickable {
+                            modifier = Modifier
+                                .clickable {
                                 startActivity(context, userNameIntent, null)
-                            },
+                                           }
+                                .horizontalScroll(scroll)
                         )
                         Spacer(modifier = Modifier.width(2.dp))
 

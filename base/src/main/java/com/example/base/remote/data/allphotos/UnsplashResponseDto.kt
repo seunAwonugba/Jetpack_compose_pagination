@@ -1,3 +1,3 @@
-package com.example.base.remote.data
+package com.example.base.remote.data.allphotos
 
 class UnsplashResponseDto : ArrayList<UnsplashResponseItem>()

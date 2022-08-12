@@ -12,7 +12,7 @@ import com.example.base.ui.AllPhotosData
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class AllPhotosDataRemoteMediator @Inject constructor(
+class AllPhotosDataRemoteMediator(
     //to provide instance of these two classes has been done in the di package above
     private val allPhotosWebService: AllPhotosWebService,
     private val allPhotosDataBase: AllPhotosDataBase

@@ -1,11 +1,12 @@
 package com.example.jetpackcomposepagination.di
 
 import com.example.base.db.AllPhotosDataBase
-import com.example.base.db.AllPhotosDataDao
 import com.example.base.remote.api.AllPhotosWebService
-import com.example.base.remote.api.SinglePhotoWebService
+import com.example.base.remote.api.DetailsPhotoWebService
 import com.example.base.repository.AllPhotosRepository
 import com.example.base.repository.AllPhotosRepositoryImpl
+import com.example.base.repository.DetailsPhotoRepository
+import com.example.base.repository.DetailsPhotoRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideSinglePhotosWebService(retrofit: Retrofit) : SinglePhotoWebService = retrofit.create()
+    fun provideDetailsPhotosWebService(retrofit: Retrofit) : DetailsPhotoWebService = retrofit.create()
 
     @Singleton
     @Provides
@@ -34,6 +35,14 @@ object RepositoryModule {
     ) : AllPhotosRepository = AllPhotosRepositoryImpl(
         allPhotosWebService = allPhotosWebService,
         allPhotosDataBase = allPhotosDataBase
+    )
+
+    @Singleton
+    @Provides
+    fun providePhotoDetailsRepository(
+        detailsPhotoWebService: DetailsPhotoWebService,
+    ) : DetailsPhotoRepository = DetailsPhotoRepositoryImpl(
+        detailsPhotoWebService = detailsPhotoWebService,
     )
 
 //    @Singleton

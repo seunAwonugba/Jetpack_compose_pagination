@@ -19,7 +19,7 @@ fun SearchBar(
     modifier: Modifier = Modifier,
     placeHolder : String = "Search...",
     value: TextFieldValue = TextFieldValue(""),
-    onValueChange: (TextFieldValue) -> Unit = {},
+    onValueChange: (TextFieldValue) -> Unit,
 ) {
     Box(
         modifier = modifier

@@ -1,4 +1,4 @@
-package com.example.base.remote.data
+package com.example.base.remote.data.allphotos
 
 data class Social(
     val instagram_username: String,

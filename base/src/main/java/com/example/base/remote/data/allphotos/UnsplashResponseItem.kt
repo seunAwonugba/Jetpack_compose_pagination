@@ -1,4 +1,6 @@
-package com.example.base.remote.data
+package com.example.base.remote.data.allphotos
+
+import com.example.base.remote.data.details.DetailsPhotoDto
 
 data class UnsplashResponseItem(
     val alt_description: Any,
@@ -12,12 +14,12 @@ data class UnsplashResponseItem(
     val id: String,
     val liked_by_user: Boolean,
     val likes: Int,
-    val links: Links,
+    val links: DetailsPhotoDto.Links,
     val promoted_at: String,
     val sponsorship: Sponsorship,
     val topic_submissions: TopicSubmissions,
     val updated_at: String,
-    val urls: Urls,
-    val user: User,
+    val urls: DetailsPhotoDto.RelatedCollections.Result.CoverPhoto.Urls,
+    val user: DetailsPhotoDto.RelatedCollections.Result.CoverPhoto.User,
     val width: Int
 )

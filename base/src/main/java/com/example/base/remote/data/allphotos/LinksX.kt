@@ -1,4 +1,4 @@
-package com.example.base.remote.data
+package com.example.base.remote.data.allphotos
 
 data class LinksX(
     val followers: String,
