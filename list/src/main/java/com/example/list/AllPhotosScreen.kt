@@ -1,21 +1,24 @@
 package com.example.list
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.example.base.ui.AllPhotosData
 import com.example.list.component.AllPhotosListItem
+import com.example.list.component.ErrorItem
 import com.example.list.component.SearchBar
 import com.example.list.viewmodel.AllPhotosViewModel
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AllPhotosScreen(
     allPhotosViewModel: AllPhotosViewModel = hiltViewModel(),
@@ -58,9 +61,77 @@ fun AllPhotosScreen(
                         )
                     }
                 }
+
+                getAllPhotos.apply {
+                    when {
+                        loadState.refresh is LoadState.Loading -> {
+                            //You can add modifier to manage load state when first time response page is loading
+                            item { FirstTimeLoadingView(modifier = Modifier.fillParentMaxSize()) }
+                        }
+                        loadState.append is LoadState.Loading -> {
+                            //You can add modifier to manage load state when next response page is loading
+                            item { FetchNextResponseLoadingView(modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)) }
+                        }
+                        loadState.refresh is LoadState.Error -> {
+                            val err = getAllPhotos.loadState.refresh as LoadState.Error
+                            item {
+                                Box(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentAlignment = Alignment.Center
+                                ){
+                                    ErrorItem(
+                                        modifier =Modifier.fillMaxWidth().padding(vertical = 16.dp) ,
+                                        errorMessage = err.error.localizedMessage!!,
+                                        retry = { retry() }
+                                    )
+                                }
+                            }
+                        }
+                        loadState.append is LoadState.Error -> {
+                            val err = getAllPhotos.loadState.append as LoadState.Error
+                            item {
+                                Box(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentAlignment = Alignment.Center
+                                ){
+                                    ErrorItem(
+                                        modifier =Modifier.fillMaxWidth().padding(vertical = 16.dp) ,
+                                        errorMessage = err.error.localizedMessage!!,
+                                        retry = { retry() }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+}
 
 
+@Composable
+fun FirstTimeLoadingView(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator()
+    }
+}
+
+@Composable
+fun FetchNextResponseLoadingView(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator()
+    }
 }

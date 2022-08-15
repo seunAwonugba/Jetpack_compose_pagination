@@ -16,4 +16,4 @@ rootProject.name = "Jetpack Compose Pagination"
 include ':app'
 include ':list'
 include ':base'
-include ':details'
+include ':single'

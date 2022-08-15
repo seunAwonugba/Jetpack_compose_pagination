@@ -64,9 +64,3 @@ fun <T> Flow<T>.wrapAsResource(initialData: T? = null): Flow<Resource<T>> {
         .onStart { emit(Resource.loading(initialData)) }
         .catch { emit(Resource.error(it, initialData)) }
 }
-
-//fun <T> Flow<T>.wrapAsResource(initialData: T? = null): Flow<Resource<T>> {
-//    return map { Resource.success(it) }
-//        .onStart { emit(Resource.loading(initialData)) }
-//        .catch { emit(Resource.error(it, initialData)) }
-//}

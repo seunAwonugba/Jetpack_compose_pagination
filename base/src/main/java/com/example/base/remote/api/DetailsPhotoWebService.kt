@@ -14,7 +14,7 @@ interface DetailsPhotoWebService {
     @GET(GET_SINGLE_PHOTO_END_POINT)
     suspend fun getPhoto(
         @Query("id") id : String
-    ) : DetailsPhotoDto
+    ) : List<DetailsPhotoDto>
 
 //    @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
 //    @GET(GET_SINGLE_PHOTO_END_POINT)

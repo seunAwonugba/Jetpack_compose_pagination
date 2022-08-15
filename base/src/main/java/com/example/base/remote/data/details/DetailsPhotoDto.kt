@@ -1,5 +1,6 @@
 package com.example.base.remote.data.details
 
+import com.example.base.ui.DetailsPhoto
 import com.google.gson.annotations.SerializedName
 
 data class DetailsPhotoDto(
