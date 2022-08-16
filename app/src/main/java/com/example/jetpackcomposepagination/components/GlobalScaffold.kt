@@ -25,7 +25,8 @@ fun GlobalScaffold(
         scaffoldState = scaffoldState,
         topBar = {
             val showTopAppBar = !listOf(
-                Screens.AllPhotosScreen.route
+                Screens.AllPhotosScreen.route,
+                "${Screens.SinglePhotoScreen.route}/{userId}"
             ).contains(currentRoute)
 
             if (!showTopAppBar) return@Scaffold

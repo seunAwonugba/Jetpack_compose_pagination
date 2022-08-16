@@ -1,5 +1,6 @@
 package com.example.list
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -76,12 +77,11 @@ fun AllPhotosScreen(
                             val err = getAllPhotos.loadState.refresh as LoadState.Error
                             item {
                                 Box(
-                                    modifier = Modifier.fillMaxSize(),
+                                    modifier = Modifier.fillParentMaxSize(),
                                     contentAlignment = Alignment.Center
                                 ){
                                     ErrorItem(
-                                        modifier =Modifier.fillMaxWidth().padding(vertical = 16.dp) ,
-                                        errorMessage = err.error.localizedMessage!!,
+                                        errorMessage = err.error.message.toString(),
                                         retry = { retry() }
                                     )
                                 }
@@ -89,13 +89,14 @@ fun AllPhotosScreen(
                         }
                         loadState.append is LoadState.Error -> {
                             val err = getAllPhotos.loadState.append as LoadState.Error
+                            Log.e("ERROR2", err.error.toString())
+
                             item {
                                 Box(
-                                    modifier = Modifier.fillMaxSize(),
+                                    modifier = Modifier.fillParentMaxSize(),
                                     contentAlignment = Alignment.Center
                                 ){
                                     ErrorItem(
-                                        modifier =Modifier.fillMaxWidth().padding(vertical = 16.dp) ,
                                         errorMessage = err.error.localizedMessage!!,
                                         retry = { retry() }
                                     )

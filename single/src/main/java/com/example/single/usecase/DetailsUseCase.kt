@@ -15,7 +15,7 @@ class DetailsUseCase @Inject constructor(
 ) {
     //use case must only have one public function
 
-    operator fun invoke(userId : String) : Flow<Resource<List<DetailsPhoto>>> = flow {
+    operator fun invoke(userId : String) : Flow<Resource<DetailsPhoto>> = flow {
         try {
             emit(Resource.Loading())
             val photoDetails = detailsPhotoRepository.getPhoto(userId = userId)

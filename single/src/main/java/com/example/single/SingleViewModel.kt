@@ -23,19 +23,20 @@ class SingleViewModel @Inject constructor(
     private val _state = mutableStateOf(DetailsState())
     internal val state: State<DetailsState> = _state
 
-    private val userId: String?
+    val userId: String?
         get() = savedStateHandle["userId"]
 
     init {
+        Log.e("USER_ID", userId.toString())
         getPhotoDetails(userId = userId.toString())
     }
 
-    private fun getPhotoDetails(userId : String){
+    fun getPhotoDetails(userId : String){
         detailsUseCase(userId = userId)
             .onEach { data ->
                 when(data){
                     is Resource.Success -> {
-                        _state.value = DetailsState(photoDetails = data.data ?: emptyList())
+                        _state.value = DetailsState(photoDetails = data.data)
                     }
                     is Resource.Error -> {
                         _state.value = DetailsState(error = data.message.toString())

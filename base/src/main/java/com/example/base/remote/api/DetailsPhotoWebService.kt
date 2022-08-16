@@ -6,6 +6,7 @@ import com.example.base.remote.data.details.DetailsPhotoDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface DetailsPhotoWebService {
@@ -13,8 +14,8 @@ interface DetailsPhotoWebService {
     @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
     @GET(GET_SINGLE_PHOTO_END_POINT)
     suspend fun getPhoto(
-        @Query("id") id : String
-    ) : List<DetailsPhotoDto>
+        @Path("id") id : String
+    ) : DetailsPhotoDto
 
 //    @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
 //    @GET(GET_SINGLE_PHOTO_END_POINT)
@@ -25,3 +26,4 @@ interface DetailsPhotoWebService {
 //        @Query("order_by") order_by : String = "latest"
 //    ) : Response<DetailsPhotoDto>
 }
+

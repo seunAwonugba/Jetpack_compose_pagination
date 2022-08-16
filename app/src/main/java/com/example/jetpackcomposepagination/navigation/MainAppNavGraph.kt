@@ -23,8 +23,10 @@ fun MainAppNavGraph(
             }
         }
         composable(route = "${Screens.SinglePhotoScreen.route}/{userId}"){
-            onTitleChange("Image Details")
-            SingleScreen()
+//            onTitleChange("Image Details")
+            SingleScreen{
+                navController.navigateUp()
+            }
         }
     }
 }

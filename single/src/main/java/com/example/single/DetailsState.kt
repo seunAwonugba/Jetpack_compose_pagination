@@ -4,6 +4,6 @@ import com.example.base.ui.DetailsPhoto
 
 data class DetailsState(
     val isLoading : Boolean = false,
-    val photoDetails : List<DetailsPhoto> = emptyList(),
+    val photoDetails : DetailsPhoto? = null,
     val error: String = ""
 )
