@@ -27,7 +27,6 @@ class SingleViewModel @Inject constructor(
         get() = savedStateHandle["userId"]
 
     init {
-        Log.e("USER_ID", userId.toString())
         getPhotoDetails(userId = userId.toString())
     }
 
@@ -43,7 +42,6 @@ class SingleViewModel @Inject constructor(
                     }
                     is Resource.Loading -> {
                         _state.value = DetailsState(isLoading = true)
-
                     }
                 }
         }.launchIn(viewModelScope)

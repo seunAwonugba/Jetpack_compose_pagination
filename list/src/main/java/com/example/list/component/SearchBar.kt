@@ -17,22 +17,21 @@ import androidx.compose.ui.text.input.TextFieldValue
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
-    placeHolder : String = "Search...",
-    value: TextFieldValue = TextFieldValue(""),
-    onValueChange: (TextFieldValue) -> Unit,
+    textValue: TextFieldValue = TextFieldValue(""),
+    onSearchQueryChanged: (TextFieldValue) -> Unit = {},
 ) {
     Box(
         modifier = modifier
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = value,
-            onValueChange = onValueChange,
+            value = textValue,
+            onValueChange = onSearchQueryChanged,
             trailingIcon = {
                 Icon(imageVector = Icons.Rounded.Search, contentDescription = "")
             },
             placeholder = {
-                Text(text = placeHolder)
+                Text(text = "Search...")
             },
             maxLines = 1,
             singleLine = true,

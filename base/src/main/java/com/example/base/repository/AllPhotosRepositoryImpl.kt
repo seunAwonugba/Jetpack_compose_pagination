@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import com.example.base.Constant.ITEMS_PER_PAGE
 import com.example.base.db.AllPhotosDataBase
 import com.example.base.paging.AllPhotosDataRemoteMediator
+import com.example.base.paging.SearchPagingSource
 import com.example.base.remote.api.AllPhotosWebService
 import com.example.base.ui.AllPhotosData
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +33,19 @@ class AllPhotosRepositoryImpl @Inject constructor(
                 allPhotosDataBase = allPhotosDataBase
             ),
             pagingSourceFactory = pagingSourceFactory
+        ).flow
+    }
+
+    @OptIn(ExperimentalPagingApi::class)
+    override fun searchAllPhotos(query: String): Flow<PagingData<AllPhotosData>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = {
+                SearchPagingSource(allPhotosWebService = allPhotosWebService, query = query)
+            }
         ).flow
     }
 }

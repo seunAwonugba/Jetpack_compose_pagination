@@ -2,7 +2,7 @@ package com.example.base
 
 object Constant {
     const val BASE_URL = "https://api.unsplash.com/"
-    const val GET_ALL_PHOTOS_END_POINT = "photo"
+    const val GET_ALL_PHOTOS_END_POINT = "photos"
     const val GET_SINGLE_PHOTO_END_POINT = "photos/{id}"
 
     const val ITEMS_PER_PAGE = 10

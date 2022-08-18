@@ -21,10 +21,8 @@ class DetailsUseCase @Inject constructor(
             val photoDetails = detailsPhotoRepository.getPhoto(userId = userId)
             emit(Resource.Success(photoDetails))
         }catch (err : IOException){
-            Log.e("THE_ERROR_1", "1. ${err} 2. ${err.message.toString()}")
             emit(Resource.Error("$err"))
         }catch (err : HttpException){
-            Log.e("THE_ERROR_2", err.toString())
             emit(Resource.Error("$err"))
         }
     }

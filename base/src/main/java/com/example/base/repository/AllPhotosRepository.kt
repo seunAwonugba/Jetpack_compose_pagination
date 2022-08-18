@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AllPhotosRepository {
     fun getAllPhotos() : Flow<PagingData<AllPhotosData>>
+
+    fun searchAllPhotos(query : String) : Flow<PagingData<AllPhotosData>>
 }

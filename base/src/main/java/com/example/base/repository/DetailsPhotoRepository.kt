@@ -8,4 +8,5 @@ import retrofit2.Response
 interface DetailsPhotoRepository {
 
     suspend fun getPhoto(userId : String): DetailsPhoto
+//    suspend fun getPhoto(userId : String): Response<DetailsPhoto>
 }

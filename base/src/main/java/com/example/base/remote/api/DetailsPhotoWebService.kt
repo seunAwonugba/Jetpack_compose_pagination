@@ -20,10 +20,8 @@ interface DetailsPhotoWebService {
 //    @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
 //    @GET(GET_SINGLE_PHOTO_END_POINT)
 //    suspend fun getPhoto(
-//        @Query("query") query : String,
-//        @Query("page") page : Int,
-//        @Query("per_page") per_page : Int,
-//        @Query("order_by") order_by : String = "latest"
+//        @Path("id") id : String
 //    ) : Response<DetailsPhotoDto>
+
 }
 
